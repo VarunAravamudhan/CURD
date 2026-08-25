@@ -18,12 +18,114 @@ To develop a Django-based web application that performs CRUD (Create, Read, Upda
 10. Run the Django development server and perform all CRUD operations through the web browser.
 
 ## PROGRAM
+~~~
+<html>
+<head>
+    <title>Student Management Portal</title>
+</head>
 
+<body>
 
+    <h2>Student Database Operations</h2>
 
+    <h4>Register a New Student</h4>
+
+    <form action="/create/" method="POST">
+        {% csrf_token %}
+
+        <label>Student Full Name:</label>
+        <input type="text" name="name" placeholder="Full name here" required>
+
+        <br><br>
+
+        <label>Email Address:</label>
+        <input type="email" name="email" placeholder="name@example.com" required>
+
+        <br><br>
+
+        <button type="submit">Save Record</button>
+    </form>
+
+    <hr>
+
+    <h4>Registered Students List</h4>
+
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Roll No / ID</th>
+            <th>Full Name</th>
+            <th>Email Address</th>
+        </tr>
+
+        {% for i in result %}
+        <tr>
+            <td>{{ i.Idno }}</td>
+            <td>{{ i.Name }}</td>
+            <td>{{ i.Email }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+
+    <form action="{% url 'home' %}" method="GET">
+        <button type="submit">Refresh Table</button>
+    </form>
+
+    <hr>
+
+    <h4>Modify Student Details</h4>
+
+    <form action="{% url 'up' %}" method="POST">
+        {% csrf_token %}
+
+        <label>Student ID:</label>
+        <input type="text" name="id" placeholder="Enter existing ID" required>
+
+        <br><br>
+
+        <label>New Name:</label>
+        <input type="text" name="name" placeholder="Updated name" required>
+
+        <br><br>
+
+        <label>New Email:</label>
+        <input type="email" name="email" placeholder="Updated email" required>
+
+        <br><br>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <hr>
+
+    <h4>Remove Student Record</h4>
+
+    <form action="{% url 'del' %}" method="POST">
+        {% csrf_token %}
+
+        <label>Student ID:</label>
+        <input type="text" name="id" placeholder="ID to delete" required>
+
+        <br><br>
+
+        <button type="submit" style="color: red;">Delete Record</button>
+    </form>
+
+</body>
+</html>
+~~~
 ## OUTPUT
 
+### Add
+<img width="1907" height="960" alt="image" src="https://github.com/user-attachments/assets/99293815-83b8-4113-83dc-baa7223d31c0" />
 
+### Update
+<img width="1917" height="947" alt="image" src="https://github.com/user-attachments/assets/4f79fbc0-5d79-464b-8c81-8a01ba06469c" />
+
+### Delete
+
+<img width="1913" height="957" alt="image" src="https://github.com/user-attachments/assets/bf24de4e-8d80-49e0-a223-5ee27f1b2e03" />
 
 ## RESULT
 
